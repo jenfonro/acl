@@ -62,7 +62,7 @@ tun:
     - tcp://any:53
 
 dns:
-  enable: true              # 启用DNS服务器
+  enable: false              # 启用DNS服务器
   prefer-h3: true          # 优先使用HTTP/3查询
   ipv6: false              # DNS解析IPv6
   listen: 0.0.0.0:53       # DNS监听地址
@@ -159,7 +159,7 @@ rule-providers:
     format: yaml
     type: http
   Ali:
-    url: url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/ali.yaml
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/ali.yaml
     path: ./ruleset/Ali.yaml
     behavior: classical
     interval: 86400
