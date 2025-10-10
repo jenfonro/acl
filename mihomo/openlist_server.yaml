@@ -1,0 +1,198 @@
+#------------------------基础配置------------------------#
+mixed-port: 7890            # 混合端口：HTTP(S)和SOCKS5共用端口
+geodata-mode: true          # GEO模式：true使用geoip.dat数据库,false使用mmdb数据库
+tcp-concurrent: true        # TCP并发：允许并发连接TCP,提高并发性能
+unified-delay: true         # 统一延迟：统一显示节点延迟
+allow-lan: false            # 局域网连接：允许其他设备经过本机代理
+bind-address: "*"          # 监听地址：*表示绑定所有IP地址
+find-process-mode: strict  # 进程匹配模式：strict严格,off关闭,always总是
+ipv6: false               # IPv6开关：是否启用IPv6支持
+
+
+# 运行模式(任选其一):
+# rule: 规则模式 - 根据规则匹配来选择代理
+# global: 全局模式 - 全部流量走代理
+# direct: 直连模式 - 全部流量不走代理
+mode: rule
+
+# 日志等级(按详细程度排序):
+# debug: 调试
+# info: 信息
+# warning: 警告
+# error: 错误
+# silent: 静默
+log-level: info
+
+# 外部控制设置
+external-controller: 0.0.0.0:9090  # 外部控制器监听地址
+external-ui: ui               # 外部控制器UI目录
+secret: "password"                        # 外部控制器密码
+
+#------------------------性能调优------------------------#
+tcp-concurrent-users: 64      # TCP并发连接数,根据服务器性能调整,建议值:16-128
+keep-alive-interval: 15       # 保活心跳间隔(秒),建议值:15-30
+inbound-tfo: true            # 入站TCP Fast Open
+outbound-tfo: true           # 出站TCP Fast Open
+# Windows示例
+#interface-name: WLAN   # Windows中的无线网卡名称
+# 或
+#interface-name: 以太网  # Windows中的有线网卡名称
+# macOS示例
+#interface-name: en0    # macOS中通常是Wi-Fi
+# 或
+#interface-name: en1    # macOS中通常是有线网卡
+# Linux示例
+#interface-name: eth0   # Linux中常见的有线网卡名
+# 或
+#interface-name: wlan0  # Linux中常见的无线网卡名
+
+# 连接池配置
+connection-pool-size: 256     # 连接池大小,建议值:128-512
+idle-timeout: 60             # 空闲超时时间(秒)
+
+
+#------------------------TUN 配置------------------------#
+tun:
+  enable: false
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+
+dns:
+  enable: true              # 启用DNS服务器
+  prefer-h3: true          # 优先使用HTTP/3查询
+  ipv6: false              # DNS解析IPv6
+  listen: 0.0.0.0:53       # DNS监听地址
+  enhanced-mode: redir-host   # DNS模式: fake-ip或redir-host
+  use-hosts: true          # 使用hosts文件
+
+  # 默认DNS服务器(用于解析其他DNS服务器的域名)
+  default-nameserver:
+    - 223.5.5.5            # 阿里DNS
+    - 119.29.29.29         # 腾讯DNS
+proxy-groups:
+  - name: ☁️ Baidu
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: ☁️ Quark
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: ☁️ Ali
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: ☁️ 189
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: ☁️ 139
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: ☁️ UC
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: 🚀 起飞
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 手动1
+      -  🚀 手动2
+  - name: 🚀 手动1
+    include-all: true
+    filter: (?i).*
+    type: select
+  - name: 🚀 手动2
+    include-all: true
+    type: select
+    filter: (?i).*
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 手动1
+      -  🚀 手动2
+rule-providers:
+  China:
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/China/China_Classical.yaml
+    path: ./ruleset/China.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  Baidu:
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/baidu.yaml
+    path: ./ruleset/Baidu.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  Quark:
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/quark.yaml
+    path: ./ruleset/Quark.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  Ali:
+    url: url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/ali.yaml
+    path: ./ruleset/Ali.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  189:
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/189.yaml
+    path: ./ruleset/189.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  139:
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/139.yaml
+    path: ./ruleset/139.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  UC:
+    url: https://cdn.jsdelivr.net/gh/jenfonro/acl@main/rules/uc.yaml
+    path: ./ruleset/UC.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+rules:
+  - "RULE-SET,Baidu,☁️ Baidu"
+  - "RULE-SET,Quark,☁️ Quark"
+  - "RULE-SET,Ali,☁️ Ali"
+  - "RULE-SET,189,☁️ 189"
+  - "RULE-SET,139,☁️ 139"
+  - "RULE-SET,UC,☁️ UC"
+  - "RULE-SET,China,🚀 起飞"
+  - "GEOIP,CN,🚀 起飞"
+  - "MATCH,🎯 全球直连"
