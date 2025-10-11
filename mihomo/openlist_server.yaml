@@ -30,9 +30,10 @@ secret: "password"                        # 外部控制器密码
 
 #------------------------性能调优------------------------#
 tcp-concurrent-users: 64      # TCP并发连接数,根据服务器性能调整,建议值:16-128
-keep-alive-interval: 15       # 保活心跳间隔(秒),建议值:15-30
-inbound-tfo: true            # 入站TCP Fast Open
-outbound-tfo: true           # 出站TCP Fast Open
+keep-alive-interval: 5       # 保活心跳间隔(秒),建议值:15-30
+keep-alive-idle: 60
+inbound-tfo: false            # 入站TCP Fast Open
+outbound-tfo: false           # 出站TCP Fast Open
 # Windows示例
 #interface-name: WLAN   # Windows中的无线网卡名称
 # 或
@@ -47,32 +48,9 @@ outbound-tfo: true           # 出站TCP Fast Open
 #interface-name: wlan0  # Linux中常见的无线网卡名
 
 # 连接池配置
-connection-pool-size: 256     # 连接池大小,建议值:128-512
-idle-timeout: 60             # 空闲超时时间(秒)
+connection-pool-size: 512     # 连接池大小,建议值:128-512
 
 
-#------------------------TUN 配置------------------------#
-tun:
-  enable: false
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-
-dns:
-  enable: false              # 启用DNS服务器
-  prefer-h3: true          # 优先使用HTTP/3查询
-  ipv6: false              # DNS解析IPv6
-  listen: 0.0.0.0:53       # DNS监听地址
-  enhanced-mode: redir-host   # DNS模式: fake-ip或redir-host
-  use-hosts: true          # 使用hosts文件
-
-  # 默认DNS服务器(用于解析其他DNS服务器的域名)
-  default-nameserver:
-    - 223.5.5.5            # 阿里DNS
-    - 119.29.29.29         # 腾讯DNS
 proxy-groups:
   - name: ☁️ Baidu
     type: select
