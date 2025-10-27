@@ -492,6 +492,9 @@ rule-providers:
     type: http
     proxy: DIRECT
 rules:
+  - "DOMAIN-SUFFIX,pc521.net,DIRECT"
+  - "DOMAIN-SUFFIX,pc528.net,DIRECT"
+  - "DOMAIN-SUFFIX,88660000.xyz,DIRECT"
   - "DOMAIN-SUFFIX,adobe.io,REJECT"
   - "DOMAIN-SUFFIX,adobestats.io,REJECT"
   - "DOMAIN-SUFFIX,oracle.com,DIRECT"
