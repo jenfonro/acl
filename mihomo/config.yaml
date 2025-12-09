@@ -497,8 +497,6 @@ rules:
   - "DOMAIN-SUFFIX,88660000.xyz,DIRECT"
   - "DOMAIN-SUFFIX,adobe.io,REJECT"
   - "DOMAIN-SUFFIX,adobestats.io,REJECT"
-  - "DOMAIN-SUFFIX,oracle.com,DIRECT"
-  - "DOMAIN-SUFFIX,oraclecloud.com,DIRECT"
   - "DOMAIN-SUFFIX,civitai.com,🌏 Civitai"
   - "RULE-SET,Youtube,📹 YouTube"
   - "RULE-SET,TikTok,🎵 TikTok"
