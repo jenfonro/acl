@@ -1,0 +1,571 @@
+#------------------------基础配置------------------------#
+mixed-port: 7890            # 混合端口：HTTP(S)和SOCKS5共用端口
+geodata-mode: true          # GEO模式：true使用geoip.dat数据库,false使用mmdb数据库
+tcp-concurrent: true        # TCP并发：允许并发连接TCP,提高并发性能
+unified-delay: true         # 统一延迟：统一显示节点延迟
+allow-lan: true            # 局域网连接：允许其他设备经过本机代理
+bind-address: "*"          # 监听地址：*表示绑定所有IP地址
+find-process-mode: strict  # 进程匹配模式：strict严格,off关闭,always总是
+ipv6: false               # IPv6开关：是否启用IPv6支持
+
+
+# 运行模式(任选其一):
+# rule: 规则模式 - 根据规则匹配来选择代理
+# global: 全局模式 - 全部流量走代理
+# direct: 直连模式 - 全部流量不走代理
+mode: rule
+
+# 日志等级(按详细程度排序):
+# debug: 调试
+# info: 信息
+# warning: 警告
+# error: 错误
+# silent: 静默
+log-level: info
+
+# 外部控制设置
+external-controller: 0.0.0.0:9090  # 外部控制器监听地址
+external-ui: ui               # 外部控制器UI目录
+secret: "password"                        # 外部控制器密码
+
+#------------------------性能调优------------------------#
+tcp-concurrent-users: 64      # TCP并发连接数,根据服务器性能调整,建议值:16-128
+keep-alive-interval: 5       # 保活心跳间隔(秒),建议值:15-30
+keep-alive-idle: 60
+inbound-tfo: false            # 入站TCP Fast Open
+outbound-tfo: false           # 出站TCP Fast Open
+# Windows示例
+#interface-name: WLAN   # Windows中的无线网卡名称
+# 或
+#interface-name: 以太网  # Windows中的有线网卡名称
+# macOS示例
+#interface-name: en0    # macOS中通常是Wi-Fi
+# 或
+#interface-name: en1    # macOS中通常是有线网卡
+# Linux示例
+#interface-name: eth0   # Linux中常见的有线网卡名
+# 或
+#interface-name: wlan0  # Linux中常见的无线网卡名
+
+# 连接池配置
+connection-pool-size: 512     # 连接池大小,建议值:128-512
+proxy-groups:
+  - name: 🚀 起飞
+    type: select
+    proxies:
+      -  🚀 自动切换
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🇭🇰 香港负载均衡
+      -  🇺🇸 美国负载均衡
+      -  🇨🇳 台湾负载均衡
+      -  🇸🇬 新加坡负载均衡
+      -  🇯🇵 日本负载均衡
+      -  🇰🇷 韩国负载均衡
+      - DIRECT
+  - name: 🚀 手动1
+    include-all: true
+    filter: (?i).*
+    type: select
+  - name: 🚀 手动2
+    include-all: true
+    type: select
+    filter: (?i).*
+  - name: 🚀 手动3
+    include-all: true
+    type: select
+    filter: (?i).*
+  - name: 🎵 TikTok
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: 📲 Telegram
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: 📹 YouTube
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: 🎮 游戏平台
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+  - name: 💬 OpenAi
+    type: select
+    proxies:
+      -  🇺🇸 美国节点
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: 🌏 Civitai
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: Ⓜ️ 微软Bing
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🎯 国内流量
+      - DIRECT
+  - name: 🚩 社交平台IP归属地
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+  - name: 📺 Bilibili
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇨🇳 台湾节点
+  - name: 🎥 Netflix
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      -  🇭🇰 香港节点
+      -  🇺🇸 美国节点
+      -  🇨🇳 台湾节点
+      -  🇸🇬 新加坡节点
+      -  🇯🇵 日本节点
+      -  🇰🇷 韩国节点
+      -  🚀 自动切换
+      -  🎯 国内流量
+      - DIRECT
+  - name: Ⓜ️ 微软云盘
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - DIRECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🎯 国内流量
+    type: select
+    proxies:
+      - DIRECT
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🛑 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🛡️ 隐私防护
+    type: select
+    proxies:
+      - REJECT
+      -  🎯 国内流量
+      -  🚀 起飞
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      -  🚀 起飞
+      -  🚀 自动切换
+      -  🎯 国内流量
+      -  🚀 手动1
+      -  🚀 手动2
+      -  🚀 手动3
+      - DIRECT
+  - name: 🇭🇰 香港节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇭🇰|港|HK|Hong Kong).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇯🇵 日本节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇺🇸 美国节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇨🇳 台湾节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇹🇼|台|新北|彰化|TW|Taiwan).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇸🇬 新加坡节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇸🇬|新加坡|坡|狮城|SG|Singapore).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇰🇷 韩国节点
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇰🇷|KR|Korea|KOR|首尔|韩|韓).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+  - name: 🇭🇰 香港负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇭🇰|港|HK|Hong Kong).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🇯🇵 日本负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🇺🇸 美国负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🇨🇳 台湾负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇹🇼|台|新北|彰化|TW|Taiwan).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🇸🇬 新加坡负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇸🇬|新加坡|坡|狮城|SG|Singapore).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🇰🇷 韩国负载均衡
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇰🇷|KR|Korea|KOR|首尔|韩|韓).*$
+    type: load-balance
+    interval: 30
+    tolerance: 50
+  - name: 🚀 自动切换
+    include-all: true
+    filter: ^.*(?!.*自有).*(🇭🇰|港|HK|Hong Kong|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|🇹🇼|台|新北|彰化|TW|Taiwan|🇸🇬|新加坡|坡|狮城|SG|Singapore|🇰🇷|KR|Korea|KOR|首尔|韩|韓).*$
+    type: url-test
+    interval: 30
+    tolerance: 50
+rule-providers:
+  China:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Classical.yaml
+    path: ./ruleset/China.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Youtube:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
+    path: ./ruleset/Youtube.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  TikTok:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml
+    path: ./ruleset/TikTok.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Telegram:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
+    path: ./ruleset/Telegram.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Game:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml
+    path: ./ruleset/Game.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  OpenAi:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./ruleset/OpenAi.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Bing:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bing/Bing.yaml
+    path: ./ruleset/Bing.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Copilot:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml
+    path: ./ruleset/Copilot.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  OneDrive:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive.yaml
+    path: ./ruleset/OneDrive.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Microsoft:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml
+    path: ./ruleset/Microsoft.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  rule-provider:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/SunsetMkt/anti-ip-attribution/master/generated/rule-provider.yaml
+    path: ./ruleset/rule-provider.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Netflix:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_Classical.yaml
+    path: ./ruleset/Netflix.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Bilibili:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
+    path: ./ruleset/Bilibili.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Apple:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical.yaml
+    path: ./ruleset/Apple.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  ChinaMedia:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.yaml
+    path: ./ruleset/ChinaMedia.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Advertising:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Classical.yaml
+    path: ./ruleset/Advertising.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Privacy:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Classical.yaml
+    path: ./ruleset/Privacy.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+  Proxy:
+    url: >-
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml
+    path: ./ruleset/Proxy.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+    proxy: DIRECT
+rules:
+  - "DOMAIN-SUFFIX,pc521.net,DIRECT"
+  - "DOMAIN-SUFFIX,pc528.net,DIRECT"
+  - "DOMAIN-SUFFIX,88660000.xyz,DIRECT"
+  - "DOMAIN-SUFFIX,adobe.io,REJECT"
+  - "DOMAIN-SUFFIX,adobestats.io,REJECT"
+  - "DOMAIN-SUFFIX,civitai.com,🌏 Civitai"
+  - "RULE-SET,Youtube,📹 YouTube"
+  - "RULE-SET,TikTok,🎵 TikTok"
+  - "RULE-SET,Telegram,📲 Telegram"
+  - "RULE-SET,OpenAi,💬 OpenAi"
+  - "RULE-SET,Bing,Ⓜ️ 微软Bing"
+  - "RULE-SET,Copilot,Ⓜ️ 微软Bing"
+  - "RULE-SET,OneDrive,Ⓜ️ 微软云盘"
+  - "RULE-SET,Microsoft,Ⓜ️ 微软服务"
+  - "RULE-SET,Game,🎮 游戏平台"
+  - "RULE-SET,China,🎯 国内流量"
+  - "GEOIP,CN,🎯 国内流量"
+  - "RULE-SET,rule-provider,🚩 社交平台IP归属地"
+  - "RULE-SET,Netflix,🎥 Netflix"
+  - "RULE-SET,Bilibili,📺 Bilibili"
+  - "RULE-SET,Apple,🍎 苹果服务"
+  - "RULE-SET,ChinaMedia,🌏 国内媒体"
+  - "RULE-SET,Advertising,🛑 广告拦截"
+  - "RULE-SET,Privacy,🛡️ 隐私防护"
+  - "RULE-SET,Proxy,🚀 起飞"
+  - "MATCH,🐟 漏网之鱼"
