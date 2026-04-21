@@ -4,7 +4,7 @@ proxy-groups:
     proxies:
       -  🚀 自动切换
       -  🚀 手动1
-      -  🚀 手动2
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -20,23 +20,19 @@ proxy-groups:
       - DIRECT
   - name: 🚀 手动1
     include-all: true
-    filter: (?i).*
+    filter: '.*'
+    exclude-filter: '家宽'
     type: select
-  - name: 🚀 手动2
+  - name: 🚀 家宽IP
     include-all: true
     type: select
-    filter: (?i).*
-  - name: 🚀 手动3
-    include-all: true
-    type: select
-    filter: (?i).*
+    filter: '家宽'
   - name: 🎵 TikTok
     type: select
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -51,8 +47,7 @@ proxy-groups:
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -67,8 +62,7 @@ proxy-groups:
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -85,8 +79,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -100,8 +93,7 @@ proxy-groups:
       -  🇺🇸 美国节点
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇨🇳 台湾节点
       -  🇸🇬 新加坡节点
@@ -115,8 +107,7 @@ proxy-groups:
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -131,8 +122,7 @@ proxy-groups:
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🎯 国内流量
       - DIRECT
   - name: 🚩 社交平台IP归属地
@@ -142,8 +132,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -158,8 +147,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇨🇳 台湾节点
   - name: 🎥 Netflix
@@ -167,8 +155,7 @@ proxy-groups:
     proxies:
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇺🇸 美国节点
       -  🇨🇳 台湾节点
@@ -191,8 +178,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
@@ -200,8 +186,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -209,8 +194,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -218,16 +202,14 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🎯 国内流量
     type: select
     proxies:
       - DIRECT
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🛑 广告拦截
     type: select
     proxies:
@@ -235,8 +217,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🛡️ 隐私防护
     type: select
     proxies:
@@ -244,8 +225,7 @@ proxy-groups:
       -  🎯 国内流量
       -  🚀 起飞
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
   - name: 🐟 漏网之鱼
     type: select
     proxies:
@@ -253,8 +233,7 @@ proxy-groups:
       -  🚀 自动切换
       -  🎯 国内流量
       -  🚀 手动1
-      -  🚀 手动2
-      -  🚀 手动3
+      -  🚀 家宽IP
       - DIRECT
   - name: 🇭🇰 香港节点
     include-all: true
