@@ -216,6 +216,12 @@ proxy-groups:
       -  🚀 自动切换
       -  🎯 国内流量
       - DIRECT
+  - name: 🖥️ SSH
+    type: select
+    proxies:
+      - 🚀 起飞
+    include-all: true
+    filter: (?i).*
   - name: Ⓜ️ 微软云盘
     type: select
     proxies:
@@ -527,6 +533,8 @@ rules:
   - "DOMAIN-SUFFIX,88660000.xyz,DIRECT"
   - "DOMAIN-SUFFIX,adobe.io,REJECT"
   - "DOMAIN-SUFFIX,adobestats.io,REJECT"
+  - "PROCESS-NAME,xshellcore.exe,🖥️ SSH"
+  - "PROCESS-NAME,xftp.exe,🖥️ SSH"
   - "DOMAIN-SUFFIX,civitai.com,🌏 Civitai"
   - "RULE-SET,Youtube,📹 YouTube"
   - "RULE-SET,TikTok,🎵 TikTok"
