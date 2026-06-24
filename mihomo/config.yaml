@@ -482,6 +482,7 @@ rules:
   - "DOMAIN-SUFFIX,88660000.xyz,DIRECT"
   - "DOMAIN-SUFFIX,adobe.io,REJECT"
   - "DOMAIN-SUFFIX,adobestats.io,REJECT"
+  - "DOMAIN-SUFFIX,vscode-cdn.net,💬 OpenAi"
   - "PROCESS-NAME,xshellcore.exe,🖥️ SSH"
   - "PROCESS-NAME,xftp.exe,🖥️ SSH"
   - "DOMAIN-SUFFIX,civitai.com,🌏 Civitai"
