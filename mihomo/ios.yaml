@@ -18,6 +18,7 @@ proxy-groups:
       -  🇯🇵 日本负载均衡
       -  🇰🇷 韩国负载均衡
       - DIRECT
+      - PROXY
   - name: 🚀 手动1
     include-all: true
     filter: '.*'
