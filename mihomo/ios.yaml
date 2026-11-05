@@ -504,5 +504,5 @@ rules:
   - "RULE-SET,ChinaMedia,🌏 国内媒体"
   - "RULE-SET,Advertising,🛑 广告拦截"
   - "RULE-SET,Privacy,🛡️ 隐私防护"
-  - "RULE-SET,Proxy,PROXY"
+  - "RULE-SET,Proxy,🚀 起飞"
   - "MATCH,🐟 漏网之鱼"
