@@ -2,23 +2,7 @@ proxy-groups:
   - name: 🚀 起飞
     type: select
     proxies:
-      -  🚀 自动切换
-      -  🚀 手动1
-      -  🚀 家宽IP
-      -  🇭🇰 香港节点
-      -  🇺🇸 美国节点
-      -  🇨🇳 台湾节点
-      -  🇸🇬 新加坡节点
-      -  🇯🇵 日本节点
-      -  🇰🇷 韩国节点
-      -  🇭🇰 香港负载均衡
-      -  🇺🇸 美国负载均衡
-      -  🇨🇳 台湾负载均衡
-      -  🇸🇬 新加坡负载均衡
-      -  🇯🇵 日本负载均衡
-      -  🇰🇷 韩国负载均衡
-      - DIRECT
-      - PROXY
+      -  PROXY
   - name: 🚀 手动1
     include-all: true
     filter: '.*'
@@ -91,13 +75,13 @@ proxy-groups:
   - name: 💬 OpenAi
     type: select
     proxies:
-      -  🇺🇸 美国节点
       -  🚀 起飞
       -  🚀 手动1
       -  🚀 家宽IP
       -  🇭🇰 香港节点
       -  🇨🇳 台湾节点
       -  🇸🇬 新加坡节点
+      -  🇺🇸 美国节点
       -  🇯🇵 日本节点
       -  🇰🇷 韩国节点
       -  🚀 自动切换
